@@ -5,6 +5,10 @@
 package com.jpa.postgresql4.models;
 
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import java.util.Date;
 
@@ -12,8 +16,13 @@ import java.util.Date;
  *
  * @author Sebastian
  */
-
-public abstract class Descriptores {
+@MappedSuperclass
+public class Descriptores {
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="des_id")
+    private Long des_id;
+    
     public String descripcion;
     public Date fechayHora;
   

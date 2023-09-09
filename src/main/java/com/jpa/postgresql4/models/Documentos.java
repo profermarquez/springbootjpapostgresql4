@@ -6,17 +6,25 @@ package com.jpa.postgresql4.models;
 
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Table;
 import java.util.Date;
 
 /**
  *
  * @author Sebastian
  */
-
-public abstract class Documentos {
+@MappedSuperclass
+public class Documentos {
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="doc_id")
+    private Long doc_id;
+    
     public String titulo;
     public String descripcionDocumento;
     public Date fechaHora;

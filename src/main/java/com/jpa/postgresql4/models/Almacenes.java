@@ -12,35 +12,43 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 /**
  *
  * @author Sebastian
  */
+@Entity
 
 public class Almacenes {
    
-    private Long id;
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="almacen_id")
+    private Long almacen_id;
     
+    @OneToMany
+    @JoinColumn(name = "per_id")//clave id de del objeto persona
     public ArrayList<Administrativo> personalAdministrativo = new ArrayList<>();   
-    
+    @OneToMany
+    @JoinColumn(name = "des_id")//clave id de del objeto persona
     public ArrayList<Movil> moviles = new ArrayList<>();
-    
-    @OneToMany(cascade =CascadeType.ALL)
-    @JoinColumn(name="fk_ordenes_id",referencedColumnName="almacenes_id")
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<OrdenDeCompra> pedidosAProveedores = new ArrayList<>();
-    @OneToMany(cascade =CascadeType.ALL)
-    @JoinColumn(name="fk_pedidos_id",referencedColumnName="almacenes_id")
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<Pedidos> inventarioPedidos = new ArrayList<>();
-    @OneToMany(cascade =CascadeType.ALL)
-    @JoinColumn(name="fk_solicitudes_id",referencedColumnName="almacenes_id")
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<SolicitudReparto> repartos = new ArrayList<>();
-    @OneToMany(cascade =CascadeType.ALL)
-    @JoinColumn(name="fk_manzanas_id",referencedColumnName="almacenes_id")
+    @OneToMany
+    @JoinColumn(name = "man_id")//clave id de del objeto persona
     public ArrayList<Manzana> manzanas = new ArrayList<>();
     
-    
+    @OneToMany
+    @JoinColumn(name = "pedido_id")//clave id de del objeto persona
     public ArrayList<Pedidos> getPedidos()
     { return this.inventarioPedidos;}
     

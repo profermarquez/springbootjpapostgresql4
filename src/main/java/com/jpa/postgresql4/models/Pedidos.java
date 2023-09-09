@@ -13,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -20,15 +21,21 @@ import java.util.Date;
  *
  * @author Sebastian
  */
-
+@Entity
 class Pedidos {
-    
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="pedido_id")
+    private Long pedido_id;
     public int codigo;
     public int codigoDeBarras;
     public String estado;// almacenado, transito, entregado
     
+    @OneToOne()
     public Ruta ruta;
     
+    @OneToMany
+    @JoinColumn(name = "pro_id")//clave id de del objeto persona
     public ArrayList<Producto> productos = new ArrayList<Producto>();
     public boolean entregado;
     public String direccionDestino;

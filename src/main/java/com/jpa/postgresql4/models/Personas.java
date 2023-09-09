@@ -16,17 +16,20 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 /**
  *
  * @author Sebastian
  */
-@MappedSuperclass
+@Entity(name="persona")
+
 public class Personas {
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
     @Column(name="persona_id")
+    private long per_id;
     public String nombreyApellido;
     public String usuario;
     public String contraseña;
@@ -35,8 +38,9 @@ public class Personas {
     public String cuil;
     public String telefono1;
     public String telefono2;
-   
-    public ArrayList<Contratos> contratos = new ArrayList<Contratos>();
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto contrato
+    public ArrayList<Contratos> contratos = new ArrayList<>();
 
    
 

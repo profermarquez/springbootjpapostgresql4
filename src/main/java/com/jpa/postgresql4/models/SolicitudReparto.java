@@ -5,30 +5,35 @@
 package com.jpa.postgresql4.models;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.util.Date;
 
 /**
  *
  * @author Sebastian
  */
-
+@Entity
 public class SolicitudReparto extends Documentos{
-    
-    
-    
+
+    @OneToOne(cascade =CascadeType.ALL)
+    @JoinColumn(name="persona_id")
     public Transportista transp;
-    
     public String direccion;
     
     @OneToOne(cascade =CascadeType.ALL)
-    @JoinColumn(name="fk_manzana_id")
+    @JoinColumn(name="man_id")
     public Manzana manzana;
+    
     public int codigoReparto;
     public boolean entregado;
 
@@ -45,13 +50,7 @@ public class SolicitudReparto extends Documentos{
         this.direccion = direccion;
     }
 
-    public Manzana getManzana() {
-        return manzana;
-    }
-
-    public void setManzana(Manzana manzana) {
-        this.manzana = manzana;
-    }
+   
 
     public int getCodigoReparto() {
         return codigoReparto;

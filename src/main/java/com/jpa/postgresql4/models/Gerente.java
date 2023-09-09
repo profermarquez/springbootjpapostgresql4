@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
  */
 
 
-
+@Entity
 public class Gerente extends Personas{
     
     public Gerente(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {

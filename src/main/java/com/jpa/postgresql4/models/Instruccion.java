@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +21,14 @@ import lombok.NoArgsConstructor;
  * @author Sebastian
  */
 
+@Entity
 
 class Instruccion {
+    
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="ins_id")
+    private Long ins_id;
     
     private Long instruction_id;
     public String nroInstruccion;

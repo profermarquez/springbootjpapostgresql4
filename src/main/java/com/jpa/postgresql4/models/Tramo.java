@@ -16,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.util.List;
 
 
@@ -23,28 +24,22 @@ import java.util.List;
  *
  * @author Sebastian
  */
-
+@Entity
 public class Tramo {
     
     
-    private Long id;
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="tramo_id")
+    private Long tramo_id;
 
     public String tipoTerreno;//tierra, asfalto, empedrado, mixto
     public int duracion;
     
-    
+    @OneToMany
+    @JoinColumn(name = "ins_id")//clave id de del objeto contrato
     public List<Instruccion> instruciones;
-
-  
-   
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="fk_ma_origen")
     public Manzana origen;

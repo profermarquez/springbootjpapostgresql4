@@ -14,17 +14,21 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@Entity
 
 class Manzana {
    
-    private Long id;
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="manzana_id")
+    private Long man_id;
     //@Column(name = "nombre")
     public String nombre;
     //@Column(name = "limite_uno")
@@ -48,13 +52,6 @@ class Manzana {
         return callesInternas;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public void setCallesInternas(List<String> callesInternas) {
         this.callesInternas = callesInternas;

@@ -14,17 +14,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 /**
  *
  * @author Sebastian
  */
+@Entity
 
 public class AuxiliarCargaDescarga extends Personas{
     
-    private Long auxiliar_id;
-    
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<SolicitudReparto> repartos = new ArrayList<SolicitudReparto>();
 
     public AuxiliarCargaDescarga(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {

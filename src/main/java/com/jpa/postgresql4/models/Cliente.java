@@ -5,10 +5,14 @@
 package com.jpa.postgresql4.models;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -20,16 +24,21 @@ import java.util.ArrayList;
  * @author Sebastian
  */
 
-
+@Entity
 public class Cliente extends Personas{
     
+   
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto persona
     private ArrayList<Pedidos> pedidos= new ArrayList<>();
-    
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<RemitoEntrega> remitos = new ArrayList<>();
-    
+    @OneToMany
+    @JoinColumn(name = "mes_id")//clave id de del objeto persona
     public ArrayList<Mensaje> mensaje = new ArrayList<>();
-    
-    public ArrayList<Pedidos> pedidosFavoritos= new ArrayList<>();
+    //Se modifico
+    ///public ArrayList<Pedidos> pedidosFavoritos= new ArrayList<>();
 
     public Cliente(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {
         super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil, telefono2);

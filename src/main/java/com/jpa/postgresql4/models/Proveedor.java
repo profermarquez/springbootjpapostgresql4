@@ -12,17 +12,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 /**
  *
  * @author Sebastian
  */
-
+@Entity
 public class Proveedor extends Personas{
    
-    private Long id;
-    
+   
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto contrato
     public ArrayList<OrdenDeCompra> contratos = new ArrayList<>();
 
     public Proveedor(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {

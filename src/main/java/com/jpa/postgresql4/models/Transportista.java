@@ -13,6 +13,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 
@@ -21,15 +22,17 @@ import java.util.ArrayList;
  * @author Sebastian
  */
 
-
+@Entity
 class Transportista extends Personas{
     
-    
+    @OneToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto contrato
     public ArrayList<SolicitudReparto> repartos = new ArrayList<SolicitudReparto>();
-    
+    @OneToMany
+    @JoinColumn(name = "per_id")//clave id de del objeto contrato
     public ArrayList<AuxiliarCargaDescarga> auxiliarCargaDescarga = new ArrayList<>();
-    
-    
+    @OneToOne
+    @JoinColumn(name = "des_id")//clave id de del objeto contrato
     public Movil movil;
 
     public Transportista(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {

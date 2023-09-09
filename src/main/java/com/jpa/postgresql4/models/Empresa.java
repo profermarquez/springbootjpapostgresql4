@@ -21,21 +21,29 @@ import java.util.ArrayList;
  *
  * @author Sebastian
  */
-
+@Entity
 public class Empresa {
     
-    private Long id;
+    @Id
+    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name="empresa_id")
+    private Long empres_id;
     public String nombre;
-   
+    @OneToOne()
+    @JoinColumn(name = "persona_id")//clave id de del objeto persona
     public Gerente gerente;
-    
+    @OneToMany
+    @JoinColumn(name = "almacen_id")//clave id de del objeto persona
     public ArrayList<Almacenes> almacenes = new ArrayList<Almacenes>();
-    
+    @OneToMany
+    @JoinColumn(name = "persona_id")//clave id de del objeto persona
     public ArrayList<Administrativo> personalAdministrativo= new ArrayList<>();
     
-   
+    @OneToMany
+    @JoinColumn(name = "des_id")//clave id de del objeto persona
     public ArrayList<Movil> moviles= new ArrayList<Movil>();
-    
+    @OneToMany
+    @JoinColumn(name = "ruta_id")//clave id de del objeto persona
     public ArrayList<Ruta> rutas= new ArrayList<>();
     
   

@@ -6,6 +6,7 @@ package com.jpa.postgresql4.models;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.util.Date;
 
@@ -13,25 +14,12 @@ import java.util.Date;
  *
  * @author Sebastian
  */
-
+@Entity
 public class RemitoEntrega extends SolicitudReparto{
     
     public Date fechaEntrega;
     public String quejas;
     public String calificacion;// de 1 a 5 estrellas
-
-    public RemitoEntrega() {
-    }
-
-    public RemitoEntrega(Date fechaEntrega, String quejas, String calificacion) {
-        this.fechaEntrega = fechaEntrega;
-        this.quejas = quejas;
-        this.calificacion = calificacion;
-    }
-
-    
-
-  
 
     public Date getFechaEntrega() {
         return fechaEntrega;
@@ -67,13 +55,7 @@ public class RemitoEntrega extends SolicitudReparto{
         this.direccion = direccion;
     }
 
-    public Manzana getManzana() {
-        return manzana;
-    }
-
-    public void setManzana(Manzana manzana) {
-        this.manzana = manzana;
-    }
+    
 
     public int getCodigoReparto() {
         return codigoReparto;

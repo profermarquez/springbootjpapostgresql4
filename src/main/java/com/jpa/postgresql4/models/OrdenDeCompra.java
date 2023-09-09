@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,10 +20,11 @@ import java.util.Date;
  *
  * @author Sebastian
  */
-
+@Entity
 public class OrdenDeCompra extends Documentos{
    
-   
+    @OneToMany
+    @JoinColumn(name = "pro_id")//clave id de del objeto persona
     public ArrayList<Producto> productos = new ArrayList<>();
     public boolean recibido;
     public String tiempoentimado;

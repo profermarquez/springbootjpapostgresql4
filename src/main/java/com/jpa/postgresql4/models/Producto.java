@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.transaction.Transactional;
 import java.util.Date;
 
@@ -20,9 +21,8 @@ import java.util.Date;
 
 
 
-
+@Entity
 public class Producto extends Descriptores{
-    
     
     public int codigo;
     public String categoria;
