@@ -4,16 +4,10 @@
  */
 package com.jpa.postgresql4.models;
 
-import jakarta.persistence.CascadeType;
-
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 
@@ -23,7 +17,7 @@ import java.util.ArrayList;
  */
 
 @Entity
-class Transportista extends Personas{
+public class Transportista extends Personas{
     
     @OneToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto contrato
@@ -38,10 +32,6 @@ class Transportista extends Personas{
     public Transportista(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {
         super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil, telefono2);
     }
-
-    
-
-    
 
     public ArrayList<SolicitudReparto> getRepartos() {
         return repartos;
@@ -59,86 +49,12 @@ class Transportista extends Personas{
         this.auxiliarCargaDescarga = auxiliarCargaDescarga;
     }
 
-  
-/*
     public Movil getMovil() {
         return movil;
     }
 
     public void setMovil(Movil movil) {
         this.movil = movil;
-    }*/
-
-    public String getNombreyApellido() {
-        return nombreyApellido;
-    }
-
-    public void setNombreyApellido(String nombreyApellido) {
-        this.nombreyApellido = nombreyApellido;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-    public String getCuil() {
-        return cuil;
-    }
-
-    public void setCuil(String cuil) {
-        this.cuil = cuil;
-    }
-
-    public String getTelefono1() {
-        return telefono1;
-    }
-
-    public void setTelefono1(String telefono1) {
-        this.telefono1 = telefono1;
-    }
-
-    public String getTelefono2() {
-        return telefono2;
-    }
-
-    public void setTelefono2(String telefono2) {
-        this.telefono2 = telefono2;
-    }
-
-    public ArrayList<Contratos> getContratos() {
-        return contratos;
-    }
-
-    public void setContratos(ArrayList<Contratos> contratos) {
-        this.contratos = contratos;
     }
     
 }

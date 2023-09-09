@@ -9,10 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.transaction.Transactional;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 
@@ -22,8 +18,7 @@ import lombok.NoArgsConstructor;
  */
 
 @Entity
-
-class Instruccion {
+public class Instruccion {
     
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
@@ -32,9 +27,7 @@ class Instruccion {
     
     private Long instruction_id;
     public String nroInstruccion;
-    //@Column(name = "instruccion")
     public String instruccion;
-    //@Column(name = "car")
     public String calleAvenidaRuta;
     
     public Instruccion(String nroInstruccion, String instruccion) {

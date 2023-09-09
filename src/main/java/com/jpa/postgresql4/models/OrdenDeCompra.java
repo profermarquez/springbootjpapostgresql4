@@ -4,15 +4,9 @@
  */
 package com.jpa.postgresql4.models;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -28,9 +22,6 @@ public class OrdenDeCompra extends Documentos{
     public ArrayList<Producto> productos = new ArrayList<>();
     public boolean recibido;
     public String tiempoentimado;
-
-    public OrdenDeCompra() {
-    }
     public Date fechaEntrega;
     public String calificacion;// de 1 a 5 estrellas
 

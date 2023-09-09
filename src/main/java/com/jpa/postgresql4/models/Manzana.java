@@ -3,27 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.jpa.postgresql4.models;
-
-
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
-import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
 
 @Entity
-
-class Manzana {
+public class Manzana {
    
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
@@ -39,7 +30,8 @@ class Manzana {
     public String limiteavcalle3;
     //@Column(name = "limite_cuatro")
     public String limiteavcalle4;
-    
+    @ElementCollection
+    @Column(name = "calles_internas", nullable = false)
     public List<String> callesInternas = new ArrayList<>();
     
     public int latitudCentroManzana;

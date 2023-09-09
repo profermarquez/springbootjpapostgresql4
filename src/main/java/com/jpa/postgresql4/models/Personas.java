@@ -4,27 +4,20 @@
  */
 package com.jpa.postgresql4.models;
 
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 /**
  *
  * @author Sebastian
  */
-@Entity(name="persona")
-
+@MappedSuperclass
 public class Personas {
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
@@ -41,8 +34,6 @@ public class Personas {
     @OneToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto contrato
     public ArrayList<Contratos> contratos = new ArrayList<>();
-
-   
 
     public Personas(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {
         this.nombreyApellido = nombreyApellido;

@@ -6,8 +6,6 @@ package com.jpa.postgresql4.models;
 
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
 import java.util.Date;
 
 /**

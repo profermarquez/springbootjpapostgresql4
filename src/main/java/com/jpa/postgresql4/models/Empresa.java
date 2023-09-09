@@ -4,11 +4,8 @@
  */
 package com.jpa.postgresql4.models;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +25,7 @@ public class Empresa {
     @GeneratedValue(strategy =GenerationType.AUTO)
     @Column(name="empresa_id")
     private Long empres_id;
+    
     public String nombre;
     @OneToOne()
     @JoinColumn(name = "persona_id")//clave id de del objeto persona

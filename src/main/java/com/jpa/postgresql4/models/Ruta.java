@@ -4,7 +4,6 @@
  */
 package com.jpa.postgresql4.models;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +11,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
 import java.util.ArrayList;
 
 /**
@@ -25,8 +23,10 @@ public class Ruta {
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
     @Column(name="ruta_id")
+    
     private Long ruta_id;
     public String nombre;
+    
     @OneToMany
     @JoinColumn(name = "tramo_id")//clave id de del objeto contrato
     public ArrayList<Tramo> tramos = new ArrayList<>();

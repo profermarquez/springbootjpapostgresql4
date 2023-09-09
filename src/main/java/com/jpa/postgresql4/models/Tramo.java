@@ -4,9 +4,6 @@
  */
 package com.jpa.postgresql4.models;
 
-
-
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +13,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 import java.util.List;
 
 
@@ -26,7 +22,6 @@ import java.util.List;
  */
 @Entity
 public class Tramo {
-    
     
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
@@ -43,6 +38,7 @@ public class Tramo {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="fk_ma_origen")
     public Manzana origen;
+    
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="fk_ma_destino")
     public Manzana destino;

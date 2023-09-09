@@ -5,15 +5,11 @@
 package com.jpa.postgresql4.models;
 
 import jakarta.persistence.Entity;
-import jakarta.transaction.Transactional;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Sebastian
  */
-
 
 @Entity
 public class Gerente extends Personas{
