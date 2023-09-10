@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
@@ -25,30 +26,33 @@ public class Pedidos {
     @GeneratedValue(strategy =GenerationType.AUTO)
     @Column(name="pedido_id")
     private Long pedido_id;
+    
     public int codigo;
     public int codigoDeBarras;
     public String estado;// almacenado, transito, entregado
     
     @OneToOne()
+    @JoinColumn(name = "ruta_id")
     public Ruta ruta;
     
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "pro_id")//clave id de del objeto persona
     public ArrayList<Producto> productos = new ArrayList<Producto>();
+    
     public boolean entregado;
-    public String direccionDestino;
+    public String calleAvenidaRuta;
     public String tipoEntrega;// casa, departamento, barrio cerrado
     public String ciudad;
     public boolean esFavorito;
     public String barrio;
     public Date fechaPedido;
 
-    public Pedidos(int codigoDeBarras, String estado, Ruta ruta, boolean entregado, String direccionDestino, String tipoEntrega, String ciudad, boolean esFavorito, String barrio, Date fechaPedido) {
+    public Pedidos(int codigoDeBarras, String estado, Ruta ruta, boolean entregado, String callear, String tipoEntrega, String ciudad, boolean esFavorito, String barrio, Date fechaPedido) {
         this.codigoDeBarras = codigoDeBarras;
         this.estado = estado;
         this.ruta = ruta;
         this.entregado = entregado;
-        this.direccionDestino = direccionDestino;
+        this.calleAvenidaRuta = callear;
         this.tipoEntrega = tipoEntrega;
         this.ciudad = ciudad;
         this.esFavorito = esFavorito;
@@ -114,13 +118,39 @@ public class Pedidos {
         this.entregado = entregado;
     }
 
-    public String getDireccionDestino() {
-        return direccionDestino;
+    public Long getPedido_id() {
+        return pedido_id;
     }
 
-    public void setDireccionDestino(String direccionDestino) {
-        this.direccionDestino = direccionDestino;
+    public void setPedido_id(Long pedido_id) {
+        this.pedido_id = pedido_id;
     }
+
+    public String getCalleAvenidaRuta() {
+        return calleAvenidaRuta;
+    }
+
+    public void setCalleAvenidaRuta(String calleAvenidaRuta) {
+        this.calleAvenidaRuta = calleAvenidaRuta;
+    }
+
+    public boolean isEsFavorito() {
+        return esFavorito;
+    }
+
+    public void setEsFavorito(boolean esFavorito) {
+        this.esFavorito = esFavorito;
+    }
+
+    public Date getFechaPedido() {
+        return fechaPedido;
+    }
+
+    public void setFechaPedido(Date fechaPedido) {
+        this.fechaPedido = fechaPedido;
+    }
+
+   
 
     public String getTipoEntrega() {
         return tipoEntrega;

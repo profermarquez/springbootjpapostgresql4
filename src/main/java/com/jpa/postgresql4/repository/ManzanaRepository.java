@@ -5,6 +5,7 @@
 package com.jpa.postgresql4.repository;
 
 import com.jpa.postgresql4.models.Manzana;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ManzanaRepository extends CrudRepository<Manzana, Long>{
-    
+    Manzana findByNombre(String nombre);
+
+    Manzana findById(long id);
 }

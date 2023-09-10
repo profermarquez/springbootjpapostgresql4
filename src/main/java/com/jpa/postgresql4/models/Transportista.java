@@ -6,6 +6,7 @@ package com.jpa.postgresql4.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
@@ -19,12 +20,14 @@ import java.util.ArrayList;
 @Entity
 public class Transportista extends Personas{
     
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto contrato
     public ArrayList<SolicitudReparto> repartos = new ArrayList<SolicitudReparto>();
-    @OneToMany
+    
+    @ManyToMany
     @JoinColumn(name = "per_id")//clave id de del objeto contrato
     public ArrayList<AuxiliarCargaDescarga> auxiliarCargaDescarga = new ArrayList<>();
+    
     @OneToOne
     @JoinColumn(name = "des_id")//clave id de del objeto contrato
     public Movil movil;

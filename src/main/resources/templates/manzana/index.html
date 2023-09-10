@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+<td><a th:href="@{/edit/{id}(id=${manzana.man_id})}">Edit</a></td>
+                                    <td><a th:href="@{/delete/{id}(id=${manzana.man_id})}">Delete</a></td>
+-->
+<html>
+    <head>
+        <title>Manzana ABM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <div th:switch="${manzanas}">
+                <h2 th:case="null">No users yet!</h2>
+                    <div th:case="*">
+                    <h2>Manzanas</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre Manzana</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr th:each="manzana : ${manzanas}">
+                                    <td th:text="${manzana.nombre}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>      
+                <p><a href="/">Agregar Manzana</a></p>
+            </div>
+        </div>
+    </body>
+</html>

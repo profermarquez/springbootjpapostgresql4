@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Manzana {
     @Column(name="manzana_id")
     private Long man_id;
     //@Column(name = "nombre")
-    public String nombre;
+    public String nombre;//codigo solamente, contiguo para comprovar si son manzanas contiguas
     //@Column(name = "limite_uno")
     public String limiteavcalle1;
     //@Column(name = "limite_dos")
@@ -30,13 +31,34 @@ public class Manzana {
     public String limiteavcalle3;
     //@Column(name = "limite_cuatro")
     public String limiteavcalle4;
+    
     @ElementCollection
     @Column(name = "calles_internas", nullable = false)
+    @JoinColumn(name = "man_id")
     public List<String> callesInternas = new ArrayList<>();
     
-    public int latitudCentroManzana;
+    public double latitudCentroManzana;
     
-    public int longitudCentroManzana;
+    public double longitudCentroManzana;
+    //ArrayList<String> lista1 = new ArrayList<String>();     lista1.add("El Obrero");    lista1.add("Av Almafuerte");      lista1.add("Esperanza"); lista1.add("La Flor");    lista1.add("Esperanza");      lista1.add("Av Malvinas");
+    //new Manzana("184","Av Aguado","Rio Paraná","Av Gregorio Las Heras", "Av José de Urquiza", -27.35646612762969, -55.916853316224156, lista1)
+     
+    //ArrayList<String> lista1 = new ArrayList<String>();     lista1.add("c.120");    lista1.add("c.122");      lista1.add("c.124"); lista1.add("Semilla");    lista1.add("c.105");      lista1.add("c.103");
+    //new Manzana("235","Av Santa Cruz","Av Zapiola","Av Aguado", "Av Quaranta", -27.39953272089911, -55.93050906474097, lista1)
+    
+    public Manzana(String nombre, String limiteavcalle1, String limiteavcalle2, String limiteavcalle3, String limiteavcalle4, double latitudCentroManzana, double longitudCentroManzana,ArrayList ci) {
+        this.nombre = nombre;
+        this.limiteavcalle1 = limiteavcalle1;
+        this.limiteavcalle2 = limiteavcalle2;
+        this.limiteavcalle3 = limiteavcalle3;
+        this.limiteavcalle4 = limiteavcalle4;
+        this.latitudCentroManzana = latitudCentroManzana;
+        this.longitudCentroManzana = longitudCentroManzana;
+        this.callesInternas = ci;
+    }
+
+    public Manzana() {
+    }
 
     
 
@@ -52,6 +74,11 @@ public class Manzana {
     public boolean compareTo(Manzana m)
     {//TO DO
         return true;}
+    
+    public boolean esManzanaContigua(Manzana m)
+    {//TO DO
+        return true;}
+    
 
     public String getNombre() {
         return nombre;
@@ -93,7 +120,7 @@ public class Manzana {
         this.limiteavcalle4 = limiteavcalle4;
     }
 
-    public int getLatitudCentroManzana() {
+    public double getLatitudCentroManzana() {
         return latitudCentroManzana;
     }
 
@@ -101,7 +128,7 @@ public class Manzana {
         this.latitudCentroManzana = latitudCentroManzana;
     }
 
-    public int getLongitudCentroManzana() {
+    public double getLongitudCentroManzana() {
         return longitudCentroManzana;
     }
 

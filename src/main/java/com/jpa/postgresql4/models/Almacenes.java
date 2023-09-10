@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 
@@ -25,26 +26,31 @@ public class Almacenes {
     @Column(name="almacen_id")
     private Long almacen_id;
     
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "per_id")//clave id de del objeto persona
-    public ArrayList<Administrativo> personalAdministrativo = new ArrayList<>();   
-    @OneToMany
+    public ArrayList<Administrativo> personalAdministrativo = new ArrayList<>(); 
+    
+    @ManyToMany
     @JoinColumn(name = "des_id")//clave id de del objeto persona
     public ArrayList<Movil> moviles = new ArrayList<>();
-    @OneToMany
+    
+    @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<OrdenDeCompra> pedidosAProveedores = new ArrayList<>();
-    @OneToMany
+    
+    @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<Pedidos> inventarioPedidos = new ArrayList<>();
-    @OneToMany
+    
+    @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<SolicitudReparto> repartos = new ArrayList<>();
-    @OneToMany
-    @JoinColumn(name = "man_id")//clave id de del objeto persona
+    
+    @ManyToMany
+    @JoinColumn(name = "manzana_id")//clave id de del objeto persona
     public ArrayList<Manzana> manzanas = new ArrayList<>();
     
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "pedido_id")//clave id de del objeto persona
     public ArrayList<Pedidos> getPedidos()
     { return this.inventarioPedidos;}

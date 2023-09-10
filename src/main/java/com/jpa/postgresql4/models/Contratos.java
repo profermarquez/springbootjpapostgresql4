@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Sebastian
  */
-@Entity(name="Contratos")
+@Entity
 
 public class Contratos extends Documentos{
     public int nroExpediente;

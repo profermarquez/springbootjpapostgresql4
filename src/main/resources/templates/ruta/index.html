@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <div th:switch="${rutas}">
+                <h2 th:case="null">No users yet!</h2>
+                    <div th:case="*">
+                    <h2>Rutas</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nombre Rutas</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr th:each="ruta : ${rutas}">
+                                    <td th:text="${ruta.nombre}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>      
+                <p><a href="/">Agregar Ruta</a></p>
+            </div>
+        </div>
+    </body>
+</html>

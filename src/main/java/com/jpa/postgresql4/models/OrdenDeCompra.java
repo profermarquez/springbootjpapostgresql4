@@ -6,6 +6,7 @@ package com.jpa.postgresql4.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,9 +18,10 @@ import java.util.Date;
 @Entity
 public class OrdenDeCompra extends Documentos{
    
-    @OneToMany
+    @ManyToMany
     @JoinColumn(name = "pro_id")//clave id de del objeto persona
     public ArrayList<Producto> productos = new ArrayList<>();
+    
     public boolean recibido;
     public String tiempoentimado;
     public Date fechaEntrega;

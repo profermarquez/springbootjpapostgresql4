@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
@@ -31,7 +32,8 @@ public class Personas {
     public String cuil;
     public String telefono1;
     public String telefono2;
-    @OneToMany
+    
+    @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto contrato
     public ArrayList<Contratos> contratos = new ArrayList<>();
 
