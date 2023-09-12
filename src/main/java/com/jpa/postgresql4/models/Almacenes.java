@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,34 +28,46 @@ public class Almacenes {
     private Long almacen_id;
     
     @ManyToMany
+    @JoinColumn(name = "mes_id")//clave id de del objeto persona
+    public List<Mensaje> mensaje = new ArrayList<>();
+    
+    @ManyToMany
     @JoinColumn(name = "per_id")//clave id de del objeto persona
-    public ArrayList<Administrativo> personalAdministrativo = new ArrayList<>(); 
+    public List<Administrativo> personalAdministrativo = new ArrayList<>(); 
     
     @ManyToMany
     @JoinColumn(name = "des_id")//clave id de del objeto persona
-    public ArrayList<Movil> moviles = new ArrayList<>();
+    public List<Movil> moviles = new ArrayList<>();
+    
+    @ManyToMany
+    @JoinColumn(name = "persona_id")//clave id de del objeto persona
+    public List<Transportista> transportistas= new ArrayList<>();
     
     @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
-    public ArrayList<OrdenDeCompra> pedidosAProveedores = new ArrayList<>();
+    public List<Pedidos> inventarioPedidos = new ArrayList<>();
     
     @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
-    public ArrayList<Pedidos> inventarioPedidos = new ArrayList<>();
-    
-    @ManyToMany
-    @JoinColumn(name = "doc_id")//clave id de del objeto persona
-    public ArrayList<SolicitudReparto> repartos = new ArrayList<>();
+    public List<SolicitudReparto> repartos = new ArrayList<>();
     
     @ManyToMany
     @JoinColumn(name = "manzana_id")//clave id de del objeto persona
-    public ArrayList<Manzana> manzanas = new ArrayList<>();
+    public List<Manzana> manzanas = new ArrayList<>();
     
-    @ManyToMany
-    @JoinColumn(name = "pedido_id")//clave id de del objeto persona
-    public ArrayList<Pedidos> getPedidos()
-    { return this.inventarioPedidos;}
     
+  
+    /*Que tiene que cargar
+    
+        - Cargar Personal administrativo
+        - Cargar Moviles
+        - Cargar los pedidos
+        - Cargar las solicitudes de reparto
+        - Cargar los mensajes
+        - Cargar los transportistas
+        - Cargar las manzanas
+    
+    */
     /*
     TODO
     revisarPedidosDiarios()

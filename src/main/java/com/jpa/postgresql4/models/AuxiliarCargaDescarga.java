@@ -7,7 +7,6 @@ package com.jpa.postgresql4.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
 
 /**
@@ -21,8 +20,8 @@ public class AuxiliarCargaDescarga extends Personas{
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<SolicitudReparto> repartos = new ArrayList<SolicitudReparto>();
 
-    public AuxiliarCargaDescarga(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {
-        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil, telefono2);
+    public AuxiliarCargaDescarga(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono1, String telefono2) {
+        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil,telefono1, telefono2);
     }
 
     

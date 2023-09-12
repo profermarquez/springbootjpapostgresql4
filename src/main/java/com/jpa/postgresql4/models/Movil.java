@@ -20,9 +20,14 @@ public class Movil extends Descriptores {
         return capacidadpaquetes;
     }
 
+    public Movil() {
+    }
+
+    
     public void setCapacidadpaquetes(int capacidadpaquetes) {
         this.capacidadpaquetes = capacidadpaquetes;
     }
+    
 
     @Override
     public String getDescripcion() {
@@ -41,7 +46,7 @@ public class Movil extends Descriptores {
     public void setModeloMovil(Date fechayHora) {
         this.fechayHora = fechayHora;
     }
-
+    
     public Movil(int capacidadpaquetes, String descripcion, Date fechayHora) {
         super(descripcion, fechayHora);
         this.capacidadpaquetes = capacidadpaquetes;

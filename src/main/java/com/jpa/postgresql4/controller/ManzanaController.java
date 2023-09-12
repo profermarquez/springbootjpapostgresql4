@@ -4,9 +4,7 @@
  */
 package com.jpa.postgresql4.controller;
 
-import com.jpa.postgresql4.models.Manzana;
 import com.jpa.postgresql4.repository.ManzanaRepository;
-import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -7,8 +7,8 @@ package com.jpa.postgresql4.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Sebastian
@@ -19,18 +19,25 @@ public class Cliente extends Personas{
    
     @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
-    private ArrayList<Pedidos> pedidos= new ArrayList<>();
+    private List<Pedidos> pedidos= new ArrayList<>();
     
     @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
-    public ArrayList<RemitoEntrega> remitos = new ArrayList<>();
+    public List<RemitoEntrega> remitos = new ArrayList<>();
     
     @ManyToMany
     @JoinColumn(name = "mes_id")//clave id de del objeto persona
-    public ArrayList<Mensaje> mensaje = new ArrayList<>();
+    public List<Mensaje> mensaje = new ArrayList<>();
+    
+    /* que tiene que cargar el cliente cuando se crea
+        - mensajes
+        - Remitos de entregas
+        - Pedidos 
+    
+    */
 
-    public Cliente(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {
-        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil, telefono2);
+    public Cliente(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil,String telefono1, String telefono2) {
+        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil,telefono1, telefono2);
     }
 
     public String getNombreyApellido() {
@@ -97,9 +104,7 @@ public class Cliente extends Personas{
         this.telefono2 = telefono2;
     }
 
-    public ArrayList<Contratos> getContratos() {
-        return contratos;
-    }
+    
 
     public void setContratos(ArrayList<Contratos> contratos) {
         this.contratos = contratos;

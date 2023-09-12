@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -35,27 +36,43 @@ public class Empresa {
     
     @ManyToMany
     @JoinColumn(name = "almacen_id")//clave id de del objeto persona
-    public ArrayList<Almacenes> almacenes = new ArrayList<Almacenes>();
+    public List<Almacenes> almacenes = new ArrayList<Almacenes>();
     
     @ManyToMany
     @JoinColumn(name = "persona_id")//clave id de del objeto persona
-    public ArrayList<Administrativo> personalAdministrativo= new ArrayList<>();
+    public List<Administrativo> personalAdministrativo= new ArrayList<>();
     
     @ManyToMany
     @JoinColumn(name = "des_id")//clave id de del objeto persona
-    public ArrayList<Movil> moviles= new ArrayList<Movil>();
+    public List<Movil> moviles= new ArrayList<Movil>();
     
     @ManyToMany
     @Column(name = "rutas_empresa", nullable = false)
     @JoinColumn(name = "empresa_id") //clave id de del objeto persona
-    public ArrayList<Ruta> rutas= new ArrayList<Ruta>();
+    public List<Ruta> rutas= new ArrayList<Ruta>();
     
     @ManyToMany
     @JoinColumn(name = "manzana_id")//clave id de del objeto persona
-    public ArrayList<Manzana> manzanas= new ArrayList<>();
+    public List<Manzana> manzanas= new ArrayList<>();
+    
+    @ManyToMany
+    @JoinColumn(name = "doc_id")//clave id de del objeto persona
+    public ArrayList<OrdenDeCompra> pedidosAProveedores = new ArrayList<>();
+     
+    @ManyToMany
+    @JoinColumn(name = "persona_id")//clave id de del objeto persona
+    public ArrayList<Proveedor> proveedores = new ArrayList<>();
     
   
-    
+    /*  que hace al inicio... 
+        - Cargar todos las manzanas
+        - Cargar todas las rutas
+        - Cargar los mobiles
+        - Cargar Todos los administrativos
+        - Cargar todos los almacenes 
+        - Cargar al Gerente
+        - Cargar los proveedores
+        - Cargar los pedidos a proveedores
     /*
     TO DO
     

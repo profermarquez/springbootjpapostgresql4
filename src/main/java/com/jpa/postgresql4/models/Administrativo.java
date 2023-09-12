@@ -11,6 +11,8 @@ import jakarta.persistence.Entity;
 @Entity
 public class Administrativo extends Personas{
     
+    
+    
     public String getNombreyApellido() {
         return nombreyApellido;
     }
@@ -75,10 +77,11 @@ public class Administrativo extends Personas{
         this.telefono2 = telefono2;
     }
 
-    
+    public Administrativo() {
+    }
 
-    public Administrativo(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {
-        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil, telefono2);
+    public Administrativo(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono1, String telefono2) {
+        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil,telefono1, telefono2);
     }
     
 }

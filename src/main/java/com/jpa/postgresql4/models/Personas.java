@@ -11,8 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.OneToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -24,6 +24,7 @@ public class Personas {
     @GeneratedValue(strategy =GenerationType.AUTO)
     @Column(name="persona_id")
     private long per_id;
+    
     public String nombreyApellido;
     public String usuario;
     public String contraseña;
@@ -35,15 +36,19 @@ public class Personas {
     
     @ManyToMany
     @JoinColumn(name = "doc_id")//clave id de del objeto contrato
-    public ArrayList<Contratos> contratos = new ArrayList<>();
+    public List<Contratos> contratos = new ArrayList<>();
 
-    public Personas(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono2) {
+    public Personas() {
+    }
+    
+    public Personas(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono1,String telefono2) {
         this.nombreyApellido = nombreyApellido;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.domicilio = domicilio;
         this.correoElectronico = correoElectronico;
         this.cuil = cuil;
+        this.telefono1=telefono1;
         this.telefono2 = telefono2;
     }
 
@@ -113,13 +118,17 @@ public class Personas {
         this.telefono2 = telefono2;
     }
 
-    public ArrayList<Contratos> getContratos() {
+    public List<Contratos> getContratos() {
         return contratos;
     }
 
-    public void setContratos(ArrayList<Contratos> contratos) {
+    public void setContratos(List<Contratos> contratos) {
         this.contratos = contratos;
     }
+
+  
+
+    
     
     
     
