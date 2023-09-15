@@ -32,13 +32,18 @@ public class Transportista extends Personas{
     @JoinColumn(name = "des_id")//clave id de del objeto contrato
     public Movil movil;
 
-    
-    
-    public Transportista(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono1,String telefono2) {
-        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil,telefono1, telefono2);
+    public Transportista(Movil movil, String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
+        super(nombreyApellido, domicilio,  cuil, telefono1, telefono2, l);
+        this.movil = movil;
+    }
+    public Transportista( String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
+        super(nombreyApellido, domicilio,  cuil, telefono1, telefono2, l);
+        
     }
 
-   
+    public Transportista() {
+        
+    }
 
     public void setRepartos(ArrayList<SolicitudReparto> repartos) {
         this.repartos = repartos;

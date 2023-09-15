@@ -4,12 +4,14 @@
  */
 package com.jpa.postgresql4.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,31 +28,32 @@ public class Personas {
     private long per_id;
     
     public String nombreyApellido;
-    public String usuario;
-    public String contraseña;
     public String domicilio;
-    public String correoElectronico;
     public String cuil;
     public String telefono1;
     public String telefono2;
     
-    @ManyToMany
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "usuario_id")//clave id de del objeto login
+    public Usuario login = new Usuario();
+    
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "doc_id")//clave id de del objeto contrato
     public List<Contratos> contratos = new ArrayList<>();
 
     public Personas() {
     }
-    
-    public Personas(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil, String telefono1,String telefono2) {
+
+    public Personas(String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
+        this.login=l;
         this.nombreyApellido = nombreyApellido;
-        this.usuario = usuario;
-        this.contraseña = contraseña;
         this.domicilio = domicilio;
-        this.correoElectronico = correoElectronico;
         this.cuil = cuil;
-        this.telefono1=telefono1;
+        this.telefono1 = telefono1;
         this.telefono2 = telefono2;
     }
+    
+    
 
     public String getNombreyApellido() {
         return nombreyApellido;
@@ -62,22 +65,6 @@ public class Personas {
         this.nombreyApellido = nombreyApellido;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
     public String getDomicilio() {
         return domicilio;
     }
@@ -86,13 +73,6 @@ public class Personas {
         this.domicilio = domicilio;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
 
     public String getCuil() {
         return cuil;
@@ -126,6 +106,15 @@ public class Personas {
         this.contratos = contratos;
     }
 
+    public Usuario getLogin() {
+        return login;
+    }
+
+    public void setLogin(Usuario login) {
+        this.login = login;
+    }
+
+    
   
 
     

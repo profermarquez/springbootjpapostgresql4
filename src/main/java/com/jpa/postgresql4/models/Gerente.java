@@ -13,9 +13,16 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Gerente extends Personas{
-    
-    public Gerente(String nombreyApellido, String usuario, String contraseña, String domicilio, String correoElectronico, String cuil,String telefono1, String telefono2) {
-        super(nombreyApellido, usuario, contraseña, domicilio, correoElectronico, cuil,telefono1, telefono2);
+
+    public Gerente(String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
+        super(nombreyApellido, domicilio, cuil, telefono1, telefono2, l);
     }
+
+    public Gerente() {
+    }
+    
+
+    
+    
     
 }
