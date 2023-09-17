@@ -12,6 +12,7 @@ import com.jpa.postgresql4.models.Transportista;
 import com.jpa.postgresql4.models.Usuario;
 import com.jpa.postgresql4.services.PersonaService;
 import com.jpa.postgresql4.services.UsuarioServicio;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,12 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/usuario/registro")
 public class RegistroUsuarioController {
 
-	private final UsuarioServicio usuarioServicio;
         private final PersonaService personaServicio;
-
+        
 	public RegistroUsuarioController(UsuarioServicio usuarioServicio,PersonaService p) {
 		super();
-		this.usuarioServicio = usuarioServicio;
                 this.personaServicio=p;
 	}
 	
@@ -37,8 +36,13 @@ public class RegistroUsuarioController {
 	}
 
 	@GetMapping
-	public String mostrarFormularioDeRegistro() {
-                //PersonaDto registro =new PersonaDto();
+	public String mostrarFormularioDeRegistro(HttpServletRequest request) {
+                //if (request.isUserInRole("GERENTE")) 
+             //      {
+              //              System.out.println("gerenteee");
+                //        }
+                //System.out.println(request.getUserPrincipal().getClass());
+                //System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
 		return "/usuario/registro";
 	}
 	
@@ -60,6 +64,6 @@ public class RegistroUsuarioController {
                 if(p==null){System.out.println("Error en controller, persona nula.");return "redirect:/usuario/registro";}
                 //usuarioServicio.guardar(u,bandera);// 1= administrador otro valor es usuario
                 personaServicio.guardar(p, bandera);
-		return "redirect:/";
+		return "redirect:/indexgerente";
 	}
 }

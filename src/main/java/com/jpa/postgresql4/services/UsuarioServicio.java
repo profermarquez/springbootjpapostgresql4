@@ -12,7 +12,6 @@ import com.jpa.postgresql4.models.Roll;
 import com.jpa.postgresql4.models.Usuario;
 import com.jpa.postgresql4.repository.UsuarioRepository;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,7 +48,7 @@ public class UsuarioServicio implements UsuarioImp{
         
 	public Usuario guardar(Usuario registroDTO, int tipo) {
             Usuario usuario = null;
-            System.out.println("Registro guardar   " + registroDTO.getPassword());
+            //System.out.println("Registro guardar   " + registroDTO.getPassword());
             if(tipo ==1)
                 {usuario = new Usuario(registroDTO.getEmail(),
 		passwordEncoder.encode(registroDTO.getPassword()),new Roll("GERENTE"));}
@@ -75,21 +74,34 @@ public class UsuarioServicio implements UsuarioImp{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepositorio.findByEmail(username);
-                System.out.println("security  "+username);
+                //System.out.println("security  "+username);
                 
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usuario o password inválidos");
 		}
-		return new User(usuario.getEmail(),usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
+                ArrayList<GrantedAuthority> r = new ArrayList<>(); r.add(mapearAutoridadesRoles(usuario.getRoles()));
+		return new User(usuario.getEmail(),usuario.getPassword(), r);
 	}
 
-	private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(String roles){
-            System.out.println("rolees  "+roles);
-            ArrayList<GrantedAuthority> roles2 = new ArrayList<GrantedAuthority>();
-            SimpleGrantedAuthority role1 = new SimpleGrantedAuthority("GERENTE");
+	//private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(String roles){
+        private GrantedAuthority mapearAutoridadesRoles(String role){
+            //System.out.println("ingreso role "+role);
+            SimpleGrantedAuthority role1 =null;
+            if(role.compareTo("AUXILIAR")==0){
+             role1 = new SimpleGrantedAuthority("ROLE_TRANSPORTISTA");}
+            if(role.compareTo("TRANSPORTISTA")==0){
+             role1 = new SimpleGrantedAuthority("ROLE_TRANSPORTISTA");
+            }if(role.compareTo("CLIENTE")==0){
+             role1 = new SimpleGrantedAuthority("ROLE_CLIENTE");
+            }if(role.compareTo("PROVEEDOR")==0){
+             role1 = new SimpleGrantedAuthority("ROLE_PROVEEDOR");
+            }if(role.compareTo("ADMINISTRATIVO")==0){
+             role1 = new SimpleGrantedAuthority("ROLE_ADMINISTRATIVO");
+            }if(role.compareTo("GERENTE")==0){
+             role1 = new SimpleGrantedAuthority("ROLE_GERENTE");}
             
-            roles2.add(role1);
-            return roles2;
+            if(role1==null){System.out.println(role1+" null role");}
+            return role1;
 	}
 	
         @Override

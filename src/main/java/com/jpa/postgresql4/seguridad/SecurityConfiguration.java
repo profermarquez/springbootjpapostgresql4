@@ -49,17 +49,18 @@ public class SecurityConfiguration extends AbstractSecurityWebApplicationInitial
             throws Exception {
         
        http.authorizeHttpRequests(requests -> requests
-               .requestMatchers("/usuario/registro").hasAuthority("GERENTE")
+               .requestMatchers("/usuario/registro").hasAuthority("ROLE_GERENTE")
                .requestMatchers("/index").permitAll()
+               .requestMatchers("/indexgerente").hasAuthority("ROLE_GERENTE")
                .requestMatchers("/logout").permitAll()
                .requestMatchers("/usuario/registro?exito").permitAll().anyRequest().authenticated())
                
-               .formLogin(form -> form.loginPage("/login").permitAll()
                
-            );
-  /*  http.authorizeRequests()
-            .requestMatchers("/").hasAnyAuthority(""); */
-    
+               .formLogin(form -> form.loginPage("/login").permitAll()
+               );
+  
+      //http.authorizeHttpRequests(r ->  System.out.println(r.requestMatchers("/usuario/registro")));
+        //http.httpBasic()       .and()       .exceptionHandling().accessDeniedPage("/403");        
         return http.build();
     }
 }
