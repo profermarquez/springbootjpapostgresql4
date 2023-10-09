@@ -24,6 +24,9 @@ public class Proveedor extends Personas{
     
     //new Proveedor("Sergio Correa", "sergioc",         "123456", "Av. Quaranta 123",      "sergiotop@gmail.com", "20319873454","3764-229191","3764-32486" )
 
+    public Proveedor() {
+    }
+
     public Proveedor(String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
         super(nombreyApellido, domicilio,  cuil, telefono1, telefono2, l);
     }

@@ -4,10 +4,17 @@
  */
 package com.jpa.postgresql4.controller;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 /**
  *
  * @author Sebastian
  */
 public class GerenteController {
+    /*@GetMapping("/indexgerente")
+    public String viewHomePage() {
+        return "/indexgerente";
+    }*/
     
 }

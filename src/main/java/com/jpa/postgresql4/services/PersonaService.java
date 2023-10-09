@@ -4,8 +4,12 @@
  */
 package com.jpa.postgresql4.services;
 
+import com.jpa.postgresql4.models.Administrativo;
+import com.jpa.postgresql4.models.AuxiliarCargaDescarga;
+import com.jpa.postgresql4.models.Cliente;
 import com.jpa.postgresql4.models.Gerente;
 import com.jpa.postgresql4.models.Personas;
+import com.jpa.postgresql4.models.Proveedor;
 import com.jpa.postgresql4.models.Transportista;
 import com.jpa.postgresql4.repository.AdministrativoRepository;
 import com.jpa.postgresql4.repository.AuxiliarCargaDescargaRepository;
@@ -50,13 +54,13 @@ public class PersonaService {
             if(tipo ==2)
                 {System.out.println("transp"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());Transportista t = new Transportista();t=(Transportista)per;this.tranRepositorio.save(t);return t;}
             if(tipo ==3)
-                {}
+                {System.out.println("provee"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());Proveedor t = new Proveedor();t=(Proveedor)per;this.proveedorRepositorio.save(t);return t;}
             if(tipo ==4)
-                {}
+                {System.out.println("cliente"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());Cliente t = new Cliente();t=(Cliente)per;this.clienteRepositorio.save(t);return t;}
             if(tipo ==5)
-                {}
+                {System.out.println("auxiliar"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());AuxiliarCargaDescarga t = new AuxiliarCargaDescarga();t=(AuxiliarCargaDescarga)per;this.auxiliarRepositorio.save(t);return t;}
             if(tipo ==6)
-                {}
+                {System.out.println("administra"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());Administrativo t = new Administrativo();t=(Administrativo)per;this.administrativoRepositorio.save(t);return t;}
             
             
             return p;

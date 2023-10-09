@@ -20,6 +20,10 @@ public class AuxiliarCargaDescarga extends Personas{
     @JoinColumn(name = "doc_id")//clave id de del objeto persona
     public ArrayList<SolicitudReparto> repartos = new ArrayList<SolicitudReparto>();
 
+    public AuxiliarCargaDescarga() {
+    }
+
+    
     public AuxiliarCargaDescarga(String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
         super(nombreyApellido, domicilio,  cuil, telefono1, telefono2, l);
     }

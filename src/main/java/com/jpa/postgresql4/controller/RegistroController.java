@@ -24,11 +24,33 @@ public class RegistroController {
 
 	@GetMapping("/")
 	public String verPaginaDeInicio(HttpServletRequest request,Model modelo) {
+            
             if (request.isUserInRole("GERENTE")) 
                    {
-                          return "/indexgerente";
-                        }
-		modelo.addAttribute("usuarios", servicio.listarUsuarios());
+                       modelo.addAttribute("usuarios", servicio.listarUsuarios());
+                       return "/indexgerente";
+                    }
+            if (request.isUserInRole("ADMINISTRATIVO")) 
+                   {
+                       return "/administrativo/index";
+                    }
+            if (request.isUserInRole("PROVEEDOR")) 
+                   {
+                       return "/proveedor/index";
+                    }
+            if (request.isUserInRole("CLIENTE")) 
+                   {
+                       return "/cliente/index";
+                    }
+            if (request.isUserInRole("TRANSPORTISTA")) 
+                   {
+                       return "/transportista/index";
+                    }
+            if (request.isUserInRole("AUXILIAR")) 
+                   {
+                       return "/transportista/index";
+                    }
+		
                 
 		return "/index";
 	}

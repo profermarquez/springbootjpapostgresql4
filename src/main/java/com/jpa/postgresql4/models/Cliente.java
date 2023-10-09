@@ -36,6 +36,9 @@ public class Cliente extends Personas{
     
     */
 
+    public Cliente() {
+    }
+
     public Cliente(String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
         super(nombreyApellido, domicilio, cuil, telefono1, telefono2, l);
     }
