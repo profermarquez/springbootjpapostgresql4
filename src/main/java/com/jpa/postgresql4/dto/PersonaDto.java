@@ -4,6 +4,9 @@
  */
 package com.jpa.postgresql4.dto;
 
+import com.jpa.postgresql4.models.Personas;
+import com.jpa.postgresql4.models.Usuario;
+
 /**
  *
  * @author Sebastian
@@ -27,6 +30,9 @@ public class PersonaDto {
         this.email = email;
         this.password = password;
         this.roll = roll;
+    }
+    public Personas gePersona(){
+        return new Personas(this.nomyape, this.domicilio, this.cuil, this.telefono1, this.telefono2, new Usuario() );
     }
 
     public PersonaDto() {

@@ -60,10 +60,10 @@ public class RegistroUsuarioController {
                 if(rol.compareTo("transportista")==0){u.getRol().setNombre(2);p= new Transportista(registro.getNomyape(),registro.getDomicilio(),registro.getCuil(),registro.getTelefono1(),registro.getTelefono2(),u);bandera=2;}
                 if(rol.compareTo("gerente")==0){u.getRol().setNombre(1);p= new Gerente(registro.getNomyape(),registro.getDomicilio(),registro.getCuil(),registro.getTelefono1(),registro.getTelefono2(),u);bandera=1;}
                 
-                if(u==null){System.out.println("Error en controller, usuario nulo.");return "redirect:/usuario/registro";}
-                if(p==null){System.out.println("Error en controller, persona nula.");return "redirect:/usuario/registro";}
+                if(u==null){System.out.println("Error en controller, usuario nulo.");return "redirect:/";}
+                if(p==null){System.out.println("Error en controller, persona nula.");return "redirect:/";}
                 //usuarioServicio.guardar(u,bandera);// 1= administrador otro valor es usuario
                 personaServicio.guardar(p, bandera);
-		return "redirect:/indexgerente";
+		return "redirect:/";
 	}
 }

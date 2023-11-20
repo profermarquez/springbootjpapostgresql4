@@ -35,7 +35,7 @@ public class Personas {
     
     @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "usuario_id")//clave id de del objeto login
-    public Usuario login = new Usuario();
+    public Usuario usuario = new Usuario();
     
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "doc_id")//clave id de del objeto contrato
@@ -45,7 +45,7 @@ public class Personas {
     }
 
     public Personas(String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
-        this.login=l;
+        this.usuario=l;
         this.nombreyApellido = nombreyApellido;
         this.domicilio = domicilio;
         this.cuil = cuil;
@@ -57,6 +57,10 @@ public class Personas {
 
     public String getNombreyApellido() {
         return nombreyApellido;
+    }
+
+    public long getId() {
+        return per_id;
     }
 
     
@@ -107,15 +111,17 @@ public class Personas {
     }
 
     public Usuario getLogin() {
-        return login;
+        return usuario;
     }
 
     public void setLogin(Usuario login) {
-        this.login = login;
+        this.usuario = login;
     }
 
     
-  
+  public String getUsername() {
+        return this.usuario.getEmail();
+    }
 
     
     

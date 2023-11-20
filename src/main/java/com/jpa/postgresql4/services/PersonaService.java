@@ -58,7 +58,7 @@ public class PersonaService {
             if(tipo ==4)
                 {System.out.println("cliente"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());Cliente t = new Cliente();t=(Cliente)per;this.clienteRepositorio.save(t);return t;}
             if(tipo ==5)
-                {System.out.println("auxiliar"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());AuxiliarCargaDescarga t = new AuxiliarCargaDescarga();t=(AuxiliarCargaDescarga)per;this.auxiliarRepositorio.save(t);return t;}
+                {System.out.println("auxiliar "+per.getLogin().getEmail()+per.getLogin().getNombreRoll());AuxiliarCargaDescarga t = new AuxiliarCargaDescarga();t=(AuxiliarCargaDescarga)per;this.auxiliarRepositorio.save(t);return t;}
             if(tipo ==6)
                 {System.out.println("administra"+per.getLogin().getEmail()+per.getLogin().getNombreRoll());Administrativo t = new Administrativo();t=(Administrativo)per;this.administrativoRepositorio.save(t);return t;}
             

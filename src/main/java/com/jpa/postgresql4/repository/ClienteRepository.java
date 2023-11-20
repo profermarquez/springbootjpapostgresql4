@@ -5,6 +5,7 @@
 package com.jpa.postgresql4.repository;
 
 import com.jpa.postgresql4.models.Cliente;
+import com.jpa.postgresql4.models.Usuario;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,9 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ClienteRepository extends CrudRepository<Cliente, Long>{
+    
+    
+    public Cliente findByUsuario(Usuario usr);
+    
     
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    
+
+    <head>
+        <title>Listado de usuarios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+       <!-- <div th:replace="~{fragments :: header}"></div>-->
+        <div>
+            <h3>Listado de usuarios</h3>
+
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.id}">ID</td>
+                        <td th:text="${usuario.email}">ID</td>
+                        <td th:text="${usuario.roles}">ID</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -11,7 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +25,7 @@ public class Pedidos {
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
     @Column(name="pedido_id")
-    private Long pedido_id;
+    private Long id;
     
     public int codigo;
     public int codigoDeBarras;
@@ -119,11 +119,11 @@ public class Pedidos {
     }
 
     public Long getPedido_id() {
-        return pedido_id;
+        return id;
     }
 
     public void setPedido_id(Long pedido_id) {
-        this.pedido_id = pedido_id;
+        this.id = pedido_id;
     }
 
     public String getCalleAvenidaRuta() {

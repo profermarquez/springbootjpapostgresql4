@@ -12,13 +12,14 @@ import com.jpa.postgresql4.services.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
-
 
 @Configuration
 @EnableWebSecurity
@@ -41,26 +42,39 @@ public class SecurityConfiguration extends AbstractSecurityWebApplicationInitial
                 //System.out.println(auth.getUserCache().toString());
 		return auth;
 	}
-        
-
+   
+    
 	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) 
             throws Exception {
+       
+
         
-       http.authorizeHttpRequests(requests -> requests
-               .requestMatchers("/usuario/registro").hasAuthority("ROLE_GERENTE")
-               .requestMatchers("/index").permitAll()
-               .requestMatchers("/indexgerente").hasAuthority("ROLE_GERENTE")
-               .requestMatchers("/logout").permitAll()
-               .requestMatchers("/usuario/registro?exito").permitAll().anyRequest().authenticated())
+       http.authorizeHttpRequests(requests -> 
                
+       {
+           requests.requestMatchers(HttpMethod.GET,"/login","/logout","/login**","/index**").permitAll();
+           requests.requestMatchers(HttpMethod.GET,"/gerente/index","/usuario/registro","/usuario/usuarios").hasAuthority("ROLE_GERENTE");
+           
+           
+           requests.requestMatchers(HttpMethod.GET,"/cliente/index","/cliente/index?continue").hasAuthority("ROLE_CLIENTE");
+           requests.requestMatchers(HttpMethod.GET,"/cliente/pedidos","/cliente/pedidos**").hasAuthority("ROLE_CLIENTE");
+           
+           requests.requestMatchers(HttpMethod.GET,"/administrativo/index").hasAuthority("ROLE_GERENTE");
+           requests.requestMatchers(HttpMethod.GET,"/transportista/index").hasAuthority("ROLE_GERENTE");
+           requests.requestMatchers(HttpMethod.GET,"/proveedor/index").hasAuthority("ROLE_GERENTE");
+           
+           requests.anyRequest().authenticated();
+       })
+              .formLogin(login -> {
+				login.loginPage("/login");
+				login.defaultSuccessUrl("/");
+				
+				}
                
-               .formLogin(form -> form.loginPage("/login").permitAll()
                );
-  
-      //http.authorizeHttpRequests(r ->  System.out.println(r.requestMatchers("/usuario/registro")));
-        //http.httpBasic()       .and()       .exceptionHandling().accessDeniedPage("/403");        
+        
         return http.build();
     }
 }

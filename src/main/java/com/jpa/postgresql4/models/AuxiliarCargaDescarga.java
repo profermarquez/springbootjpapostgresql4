@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,8 +18,8 @@ import java.util.ArrayList;
 public class AuxiliarCargaDescarga extends Personas{
     
     @ManyToMany
-    @JoinColumn(name = "doc_id")//clave id de del objeto persona
-    public ArrayList<SolicitudReparto> repartos = new ArrayList<SolicitudReparto>();
+    @JoinColumn(name = "doc_id",nullable = true)//clave id de del objeto persona
+    public List<SolicitudReparto> repartos; 
 
     public AuxiliarCargaDescarga() {
     }
@@ -26,6 +27,8 @@ public class AuxiliarCargaDescarga extends Personas{
     
     public AuxiliarCargaDescarga(String nombreyApellido, String domicilio, String cuil, String telefono1, String telefono2, Usuario l) {
         super(nombreyApellido, domicilio,  cuil, telefono1, telefono2, l);
+        this.repartos = new ArrayList<SolicitudReparto>();
+        
     }
 
    

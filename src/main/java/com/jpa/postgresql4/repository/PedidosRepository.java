@@ -14,5 +14,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PedidosRepository extends CrudRepository<Pedidos, Long>{
+
+    public Object findAllById(long pedido_id);
+
+   
+
+    
     
 }

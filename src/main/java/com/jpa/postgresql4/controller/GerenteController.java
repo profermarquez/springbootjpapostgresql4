@@ -4,6 +4,9 @@
  */
 package com.jpa.postgresql4.controller;
 
+import com.jpa.postgresql4.services.UsuarioServicio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -11,10 +14,23 @@ import org.springframework.web.bind.annotation.GetMapping;
  *
  * @author Sebastian
  */
+@Controller
 public class GerenteController {
-    /*@GetMapping("/indexgerente")
-    public String viewHomePage() {
-        return "/indexgerente";
-    }*/
+    
+    @Autowired
+    private UsuarioServicio servicioUsuarios;
+    
+    
+    
+    @GetMapping("/gerente/usuarios")
+    public String viewUsuariosPage(Model modelo) {
+        modelo.addAttribute("usuarios", servicioUsuarios.listarUsuarios());
+        return "/gerente/usuarios";
+    }
+    
+    @GetMapping("/gerente/index")
+    public String listadoUsuariosPage() {
+        return "/gerente/index";
+    }
     
 }
