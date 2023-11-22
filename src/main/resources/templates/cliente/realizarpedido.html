@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <div>
+                            <form method="post" th:action="@{/}" th:object="${pedido}">
+                                <input id="firstName" placeholder="Enter First Name"  type="text"/>
+                                <input id="lastName" placeholder="Enter Last Name" type="text"/>
+                                <input type="submit" value="Create User">
+                                <input type="reset" value="Reset">
+                            </form>
+                        </div>
+                        <div class="col-md-10">
+        </div>
+    </body>
+</html>

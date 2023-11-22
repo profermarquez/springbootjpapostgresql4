@@ -8,47 +8,56 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     </head>
-    <body>
+    <!-- this.codigoDeBarras = codigoDeBarras;   sI
+        this.estado = estado;
+        this.ruta = ruta;    HAY QUE GENERAR 
+        this.entregado = entregado;
+        this.calleAvenidaRuta = callear;
+        this.tipoEntrega = tipoEntrega;
+        this.ciudad = ciudad;
+        this.esFavorito = esFavorito;
+        this.barrio = barrio;
+        this.fechaPedido = fechaPedido; 
+    
+    VER PEDIDOS, REALIZAR PEDIDOS
+    -->
+    <script>function noatras(){
+window.location.hash="no-back-button";
+window.location.hash="Again-No-back-button"
+window.onhashchange=function(){
+                    window.location.hash="no-back-button";
+                    }
+}</script>
+    <body  onload="noatras();">
         <div class="container my-2">
             <div class="card">
                 <div class="card-body">
                     <div th:switch="${staffs}" class="container my-5">
-                        <div>
-                            <form method="post" th:action="@{/}" th:object="${pedido}">
-                                <input id="firstName" placeholder="Enter First Name"  type="text"/>
-                                <input id="lastName" placeholder="Enter Last Name" type="text"/>
-                                <input type="submit" value="Create User">
-                                <input type="reset" value="Reset">
-                            </form>
-                        </div>
-                        <div class="col-md-10">
+                        
                             <h2 th:case="null">No record found !!</h2>
                             <div th:case="*">
                                 <table class="table table-striped table-responsive-md">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Designation</th>
-                                            <th>Email</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Codigo de Barras</th>
+                                            <th>Estado del Pedido</th>
+                                            <th>Fué entregado</th>
+                                            <th>Dirección</th>
+                                            <th>Ciudad</th>
+                                            <th>Barrio</th>
+                                            <th>FechaPedido</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="staff : ${pedidos}">
-                                            <td th:text="${staff.name}"></td>
-                                            <td th:text="${staff.desgn}"></td>
-                                            <td th:text="${staff.emailId}"></td>
-                                            <td>
-                                                <a th:href="@{/staff-update/{id}(id=${staff.id})}" class="btn btn-primary">
-                                                    <i class="fas fa-user-edit ml-2"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <a th:href="@{/staff-delete/{id}(id=${staff.id})}" class="btn btn-primary">
-                                                    <i class="fas fa-user-times ml-2"></i>
-                                                </a>
-                                            </td>
+                                            <td th:text="${staff.codigoDeBarras}"></td>
+                                            <td th:text="${staff.estado}"></td>
+                                            <td th:text="${staff.calleAvenidaRuta}"></td>
+                                            <td th:text="${staff.ciudad}"></td>
+                                            <td th:text="${staff.barrio}"></td>
+                                            <td th:text="${staff.fechaPedido}"></td>
+                                            <td th:text="${staff.entregado}"></td>
+
                                         </tr>
                                     </tbody>
                                 </table>

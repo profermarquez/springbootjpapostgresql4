@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
--->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <html>
     <head>
         <title>Cliente</title>
@@ -36,9 +34,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <div id="navbar" class="collapse navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
-                                        sesión</a></li> <li sec:authorize="isAuthenticated()"><a th:href="@{/cliente/pedidos}">
-                                        Ver pedidos</a></li>
+                                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar sesión</a></li>
+                                   <li sec:authorize="isAuthenticated()">     <a th:href="@{/cliente/pedidos}">Ver pedidos realizados</a></li>
+                                    <li sec:authorize="isAuthenticated()">    <a th:href="@{/cliente/realizarpedido}">Realizar un pedido</a></li>
+                                     <li sec:authorize="isAuthenticated()">   <a th:href="@{/cliente/consultarpedido}">Consultar un pedido</a></li>
                             </ul>
                         </div>
                     </div>

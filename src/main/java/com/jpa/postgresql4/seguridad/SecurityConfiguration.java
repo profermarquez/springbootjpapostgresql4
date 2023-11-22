@@ -58,8 +58,8 @@ public class SecurityConfiguration extends AbstractSecurityWebApplicationInitial
            requests.requestMatchers(HttpMethod.GET,"/gerente/index","/usuario/registro","/usuario/usuarios").hasAuthority("ROLE_GERENTE");
            
            
-           requests.requestMatchers(HttpMethod.GET,"/cliente/index","/cliente/index?continue").hasAuthority("ROLE_CLIENTE");
-           requests.requestMatchers(HttpMethod.GET,"/cliente/pedidos","/cliente/pedidos**").hasAuthority("ROLE_CLIENTE");
+           requests.requestMatchers(HttpMethod.GET,"/cliente/index","/cliente/index**","/cliente/index?continue").hasAuthority("ROLE_CLIENTE");
+           requests.requestMatchers(HttpMethod.GET,"/cliente/pedidos","/cliente/realizarpedido","/cliente/consultarpedido","/cliente/pedidos**").hasAuthority("ROLE_CLIENTE");
            
            requests.requestMatchers(HttpMethod.GET,"/administrativo/index").hasAuthority("ROLE_GERENTE");
            requests.requestMatchers(HttpMethod.GET,"/transportista/index").hasAuthority("ROLE_GERENTE");
