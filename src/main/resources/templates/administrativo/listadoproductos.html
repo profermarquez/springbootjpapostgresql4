@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Productos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <!--
+        <div th:switch="${productos}">
+
+            <div th:case="*">
+                <h2>Productos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Categoria</th>
+                            <th>Precio</th>
+                            <th>Delicado</th>
+                           <th>Descripcion</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="user : ${productos}">
+                            <td th:text="${user.codigo}"></td>
+                            <td th:text="${user.categoria}"></td>
+                            <td th:text="${user.precio}"></td>
+                            <td th:text="${user.delicado}"></td>
+                            <td th:text="${user.descripcion}"></td>
+                            <td><a th:href="@{/administrativo/listadoproductos/delete/{id}(id=${user.id})}">Eliminar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>      
+            <p><a href="/signup">Add a new user</a></p>
+        </div>
+        <form action="#" 
+              th:action="@{/administrativo/listadoproductos/new/{id}(id=${producto.id})}" 
+              th:object="${producto}" 
+              method="post">
+            <label for="name">Name</label>
+            <input type="text" th:field="*{name}" id="name" placeholder="Name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            
+            <label for="email">Email</label>
+            <input type="text" th:field="*{email}" id="email" placeholder="Email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            
+            <input type="submit" value="Crear Producto">   
+        </form>--> 
+    </body>
+</html>

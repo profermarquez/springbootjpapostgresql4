@@ -16,6 +16,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RegistroController {
 
+        Cliente cliente ;
+        String username;
 	@Autowired
 	private UsuarioServicio servicioUsuarios;
 
@@ -29,7 +31,8 @@ public class RegistroController {
 	public String verPaginaDeInicio(HttpServletRequest request,Model modelo,RedirectAttributes redirectAttributes) {
             
             
-            String username=request.getUserPrincipal().getName();
+            username=request.getUserPrincipal().getName();
+            cliente = this.servicioUsuarios.getPersonaCliente(username);
             
             if (request.isUserInRole("GERENTE")) 
                    {
@@ -46,7 +49,7 @@ public class RegistroController {
                     }
             if (request.isUserInRole("CLIENTE")) 
                    {
-                       Cliente cliente = this.servicioUsuarios.getPersonaCliente(username);
+                       
                        redirectAttributes.addFlashAttribute("cliente", cliente);
                        return "redirect:/cliente/index";
                     }

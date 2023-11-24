@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<html>
     <head>
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
@@ -11,9 +10,23 @@
         <div>
             <div>
                             <form method="post" th:action="@{/}" th:object="${pedido}">
-                                <input id="firstName" placeholder="Enter First Name"  type="text"/>
-                                <input id="lastName" placeholder="Enter Last Name" type="text"/>
-                                <input type="submit" value="Create User">
+                                <input id="firstName" placeholder="Codigo del pedido"  type="text"/>
+                                <input id="lastName" placeholder="Nombre de la calle" type="text"/>
+                                <input id="firstName" placeholder="Ciudad"  type="text"/>
+                                <input id="lastName" placeholder="Barrio" type="text"/>
+                                <input id="firstName" placeholder="Fecha pedido"  type="text"/>
+                                <div class="form-group">
+                            <label for="exampleFormControlSelect2">Productos</label>
+                            <select class="form-control" th:field="*{roll}" name="tipo">
+                                <option value="administrativo">Administrativo</option>
+                                <option value="auxiliarcargaydescarga">Auxiliar de carga y descarga</option>
+                                <option value="cliente">Cliente</option>
+                                <option value="proveedor">Proveedor</option>
+                                <option value="transportista">Transportista</option>
+                                <option value="gerente">Gerente</option>
+                            </select>
+                        </div>
+                                <input type="submit" value="Crear Pedido">
                                 <input type="reset" value="Reset">
                             </form>
                         </div>

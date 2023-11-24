@@ -6,6 +6,7 @@ package com.jpa.postgresql4.controller;
 
 import com.jpa.postgresql4.models.Cliente;
 import com.jpa.postgresql4.models.Pedidos;
+import com.jpa.postgresql4.repository.ProductoRepository;
 import com.jpa.postgresql4.services.PedidosServicio;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.jpa.postgresql4.services.UsuarioServicio;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  *
@@ -33,6 +35,8 @@ public class ClienteController {
     PedidosServicio pedidoServicio;
     @Autowired
     UsuarioServicio usuarioServicio;
+    @Autowired
+    ProductoRepository productoRepository;
     
     Long codigo_cliente;
     Cliente cliente;
@@ -42,13 +46,14 @@ public class ClienteController {
     public String getIndexPage(HttpServletRequest request,Model model,RedirectAttributes redirectAttributes) {
         String username=request.getUserPrincipal().getName();
         Cliente obj= (Cliente)this.usuarioServicio.getPersonaCliente(username);
-        System.out.println("obj  "+obj.nombreyApellido);
-        cliente = (Cliente) model.getAttribute("cliente");
-        if(cliente==null){System.out.println("Error, cliente nulo.");return "/logout";}
+        this.cli_nom =obj.getNombreyApellido();
+        this.cliente=obj;
+        this.codigo_cliente=obj.getId();
+        
         cli_nom = cliente.getNombreyApellido();
         codigo_cliente = cliente.getId();//codigo persona
         model.addAttribute("nombre_cliente", cli_nom);
-        System.out.println(cliente.getId());
+        //System.out.println(cliente.getId());
         redirectAttributes.addFlashAttribute("cliente", cliente);
         return "/cliente/index";
     }
@@ -65,15 +70,26 @@ public class ClienteController {
         return "/cliente/pedidos";
     }
     
-    @PostMapping("/cliente/pedidos/new")
-    public String addPedidos(Pedidos pedido, BindingResult result, Model model) {//@Valid User user, BindingResult result, Model model) {
+    @RequestMapping(value="/cliente/realizarpedido",method = RequestMethod.GET)
+    public String nuevoPedido(Model model,RedirectAttributes redirectAttributes )//,RedirectAttributes redirectAttributes,BindingResult result) 
+    {
+            /*redirectAttributes.addFlashAttribute("cliente", this.cliente);
+        if (result.hasErrors()) {
+            System.out.println("Error en la creacion de pedidos...");
+        }*/
+        
+        model.addAttribute("cities", this.productoRepository.findAll());
+        return "/cliente/realizarpedido";
+    }
+    @RequestMapping(value="/cliente/realizarpedido/new",method = RequestMethod.POST)
+    public String crearPedido(@ModelAttribute("pedido") Pedidos pedido,RedirectAttributes redirectAttributes, BindingResult result, Model model) {//@Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             System.out.println("Error en la creacion de pedidos...");
         }
-
         this.pedidoServicio.save(pedido);
-        return "redirect:/cliente/pedidos";
+        return "redirect:/cliente/index";
     }
+    
     @GetMapping("/cliente/pedidos/edit/{id}")
     public String editProductForm(@PathVariable Long id, Model model) {
         //model.addAttribute("product", productRepository.findById(id).orElse(null));
